@@ -1,4 +1,8 @@
-# Hack The North 2024
+# Hack the North 2024 Frontend Challenge
 
-Frontend Take-Home Challenge  
 Brandon Vo
+
+### Login Credentials
+
+username: admin
+password: password
