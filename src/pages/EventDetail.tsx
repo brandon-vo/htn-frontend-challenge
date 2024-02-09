@@ -30,15 +30,15 @@ const EventDetail = () => {
     const eventId = Number(id);
     const event = apiData.find((event: TEvent) => event.id === eventId);
     setEvent(event);
-    console.log(event);
-  }, [apiData]);
+    // console.log(event);
+  }, [apiData, id]);
 
   useEffect(() => {
     if (!loggedIn && event?.permission === "private") {
       alert("You must be logged in to view this event");
       navigate("../events");
     }
-  }, [event, loggedIn]);
+  }, [event, loggedIn, navigate]);
 
   const youtubeVideoId = event?.public_url?.includes("youtu.be")
     ? getYoutubeVideoId(event?.public_url)
@@ -94,6 +94,7 @@ const EventDetail = () => {
                 <a
                   className="ml-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-2 px-12"
                   target="_blank"
+                  rel="noreferrer"
                   href={event?.private_url}
                 >
                   Link
@@ -105,6 +106,7 @@ const EventDetail = () => {
             {youtubeVideoId && (
               <div className="flex-1 w-full h-[30vh] md:h-[40vh] justify-center my-8">
                 <iframe
+                  title="YouTube Video"
                   style={{ width: "80%", height: "100%" }}
                   src={`https://www.youtube.com/embed/${youtubeVideoId}`}
                 ></iframe>
