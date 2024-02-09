@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 
-const Globe = () => {
+const Globe: React.FC = () => {
   const sphereGeometry = new THREE.SphereGeometry(10, 32, 32);
 
   const material = new THREE.MeshStandardMaterial({

@@ -8,7 +8,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to top left, #ff6b6b, #556270);
+  background-image: linear-gradient(to top left, #43454d, #101426);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 h1,
@@ -21,4 +25,44 @@ button {
 
 #canvas {
   pointer-events: none;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Tailwind is being buggy and not applying my colours sometimes so I have to define them here :| */
+.border-bv-blue {
+  border-color: #4397db;
+}
+
+.border-bv-purple {
+  border-color: #8a52ca;
+}
+
+.border-bv-orange {
+  border-color: #e68d27;
+}
+
+.list-font-size {
+  font-size: 1rem;
+}
+
+@media (max-width: 1600px) {
+  .list-font-size {
+    font-size: 1vw;
+  }
+}
+
+/*  Styled scroll bar */
+body::-webkit-scrollbar {
+  width: 15px;
+}
+body::-webkit-scrollbar-track {
+  background: #43454d;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #5e70be;
+  border-radius: 10px;
+  border: 3px solid #43454d;
 }

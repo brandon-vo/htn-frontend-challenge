@@ -1,63 +1,73 @@
 import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import { loginModalAtom } from "./Navbar";
-import { useState } from "react";
+import React, { useState } from "react";
+import Modal from "./Modal";
 
-const Login = () => {
+export const loggedInAtom = atomWithStorage("loggedIn", false);
+
+const Login: React.FC = () => {
   const setLoginModalOpen = useAtom(loginModalAtom)[1];
+  const setLoggedIn = useAtom(loggedInAtom)[1];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState(false);
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("hi");
-    const correctUsername = "admin";
+  const handleLogin = () => {
+    const correctUsername = "username";
     const correctPassword = "password";
 
     if (username === correctUsername && password === correctPassword) {
-      console.log("Login successful!");
+      setLoggedIn(true);
       setLoginModalOpen(false);
     } else {
-      console.log("Incorrect username or password");
       setIncorrect(true);
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
-    <>
-      <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-medium-blue shadow-lg px-5 py-8 rounded-md z-[10001]">
-        <form className="flex flex-col gap-2" onSubmit={handleLogin}>
-          <button
-            className="absolute top-2 right-3 text-red-400"
-            onClick={() => setLoginModalOpen(false)}
-          >
-            ✖
-          </button>
-          <p className="text-md">Username</p>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <p className="text-md">Password</p>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <p className={`text-xs mt-2 ${!incorrect && "invisible"}`}>
-            Incorrect username or password!
-          </p>
-          <button
-            className="text-md w-fit bg-light-pink px-2 py-1 rounded-lg shadow-lg [text-shadow:_1px_1px_4px_rgb(0_0_0_/_60%)]"
-            type="submit"
-          >
-            Login
-          </button>
-        </form>
+    <Modal onClose={() => setLoginModalOpen(false)}>
+      <div className="flex flex-col items-center gap-2">
+        <button
+          className="absolute top-2 right-3 text-red-400 text-lg"
+          onClick={() => setLoginModalOpen(false)}
+        >
+          ✖
+        </button>
+        <h1 className="font-bold text-2xl">Login</h1>
+        <p className="text-md w-full">Username</p>
+        <input
+          type="text"
+          className="border-bv-grey border-2 rounded-md p-[1vh] w-full"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <p className="text-md w-full">Password</p>
+        <input
+          type="password"
+          className="border-bv-grey border-2 rounded-md p-[1vh] w-full"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <p className={`text-xs mt-2 ${!incorrect && "invisible"}`}>
+          Incorrect username or password!
+        </p>
+        <button
+          className="text-md w-[100%] bg-medium-pink p-[1vh] rounded-lg shadow-lg text-shadow"
+          onClick={handleLogin}
+        >
+          Login
+        </button>
       </div>
-      <div className="absolute left-0 top-0 w-screen h-screen bg-black opacity-40 z-[10000]" />
-    </>
+    </Modal>
   );
 };
 

@@ -4,5 +4,5 @@ Brandon Vo
 
 ### Login Credentials
 
-username: admin
+username: username
 password: password

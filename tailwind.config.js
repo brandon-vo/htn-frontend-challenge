@@ -8,9 +8,13 @@ module.exports = {
         "dark-blue": "#101426",
         "medium-blue": "#39416e",
         "light-pink": "#dcb6e3",
+        "medium-pink": "#bf97c7",
         "dark-pink": "#a8859d",
         "bv-white": "#fefefe",
         "bv-grey": "#d1d1d1",
+        // "bv-blue": "#326fd1",
+        // "bv-purple": "#e6d227",
+        // "bv-yellow": "#7030ba",
       },
       fontFamily: {
         onest: ["Onest", "sans-serif"],

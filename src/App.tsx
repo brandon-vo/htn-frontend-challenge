@@ -1,13 +1,26 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
-import { loginModalAtom } from "./components/Navbar";
-import { useAtom } from "jotai";
+import EventDetail from "./pages/EventDetail";
+import Navbar, { loginModalAtom } from "./components/Navbar";
 import Login from "./components/Login";
+import getApi, { apiDataAtom } from "./getApi";
+import { useAtom } from "jotai";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const isLoginModalOpen = useAtom(loginModalAtom)[0];
+  const setApiData = useAtom(apiDataAtom)[1];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getApi();
+      console.log(data);
+      setApiData(data);
+    };
+    fetchData();
+  }, [setApiData]);
+
   return (
     <BrowserRouter>
       <Navbar />
@@ -15,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/events/:id" element={<EventDetail />} />
       </Routes>
     </BrowserRouter>
   );
