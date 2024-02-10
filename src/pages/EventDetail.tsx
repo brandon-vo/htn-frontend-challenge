@@ -56,7 +56,9 @@ const EventDetail = () => {
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
-          <div className="flex flex-col flex-[75%] bg-bv-white w-full h-full my-2 p-6 rounded-xl">
+          <div
+            className={`flex flex-col flex-[75%] bg-bv-white w-full h-full my-2 p-6 rounded-xl border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
+          >
             <div className="flex items-center">
               <div className="flex flex-col">
                 <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
@@ -87,7 +89,7 @@ const EventDetail = () => {
               </div>
               {loggedIn && (
                 <a
-                  className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-2 px-12"
+                  className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-[1vh] px-[6vh]"
                   target="_blank"
                   rel="noreferrer"
                   href={event?.private_url}

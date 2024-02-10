@@ -31,7 +31,7 @@ const EventsList: React.FC = () => {
       {sortedEvents.map((event: any) => (
         <div
           key={event.id}
-          className={`flex justify-center items-center bg-bv-white my-5 px-6 py-3 rounded-xl min-h-[108px] border-${activityToColour[event.event_type]} border-l-[30px]`}
+          className={`flex justify-center items-center bg-bv-white my-5 px-6 py-3 rounded-xl min-h-[108px] border-${activityToColour[event.event_type]} translucent border-l-[25px]`}
         >
           <div className="flex w-full h-full items-center">
             <div className="flex flex-col w-[85%] md:w-[40%] gap-1 md:gap-0">

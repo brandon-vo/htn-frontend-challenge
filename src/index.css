@@ -33,15 +33,15 @@ button {
 
 /* Tailwind is being buggy and not applying my colours sometimes so I have to define them here :| */
 .border-bv-blue {
-  border-color: #4397db;
+  border-color: rgba(67, 151, 219, 0.6);
 }
 
 .border-bv-purple {
-  border-color: #8a52ca;
+  border-color: rgba(138, 82, 202, 0.6);
 }
 
 .border-bv-orange {
-  border-color: #e68d27;
+  border-color: rgba(230, 141, 39, 0.6);
 }
 
 .bg-bv-blue {
