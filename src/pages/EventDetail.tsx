@@ -41,21 +41,19 @@ const EventDetail = () => {
 
   return (
     <div className="flex w-screen h-screen">
-      <div className="flex flex-col items-start w-full mt-[70px] px-12 lg:px-34 lg:px-32 2xl:px-80">
-        <div className="flex flex-col">
+      <div className="flex flex-col items-start w-full mt-[70px] p-12 lg:px-34 lg:px-32 2xl:px-80">
+        <div className="flex items-center">
           <Link to="../events/" className="z-[20000]">
-            <h1 className="font-bold text-[4vh] text-gray-500 mt-1">
+            <h1 className="font-bold text-[3vh] lg:text-[4vh] text-gray-500">
               Upcoming Events
             </h1>
           </Link>
-          <div className="flex ml-2 lg:ml-6">
-            <h1 className="font-bold text-[2vh] lg:text-[2.5vh] text-bv-white mr-2">
-              {">"}
-            </h1>
-            <h1 className="font-bold text-[2vh] lg:text-[2.5vh] text-bv-white ">
-              {activityToLabel[event?.event_type || ""] ?? "Event"}
-            </h1>
-          </div>
+          <h1 className="font-bold text-[3vh] lg:text-[4vh] text-bv-white mx-2">
+            {">"}
+          </h1>
+          <h1 className="font-bold text-[3vh] lg:text-[4vh] text-bv-white ">
+            {activityToLabel[event?.event_type || ""] ?? "Event"}
+          </h1>
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
           <div className="flex flex-col flex-[75%] bg-bv-white w-full h-full my-2 p-6 rounded-xl">
@@ -102,9 +100,13 @@ const EventDetail = () => {
               {event?.description}
             </p>
             {event?.permission === "private" ? (
-              <p className="text-gray-500 italic">Event for Hackers</p>
+              <p className="text-[1.8vh] text-gray-500 italic">
+                Event for Hackers
+              </p>
             ) : (
-              <p className="text-gray-500 italic">Event for Everyone</p>
+              <p className="text-[1.8vh] text-gray-500 italic">
+                Event for Everyone
+              </p>
             )}
             {youtubeVideoId && (
               <div className="flex-1 w-full h-[30vh] lg:h-[40vh] justify-center mt-2">
@@ -117,7 +119,7 @@ const EventDetail = () => {
             )}
           </div>
           {event && event.related_events?.length > 0 && (
-            <div className="flex-[30%] w-full h-full min-h-[500px] pb-10 lg:pb-0 my-2">
+            <div className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
               <div className="bg-bv-white lg:h-full rounded-xl p-6">
                 <div className="flex items-center">
                   <h1 className="text-black text-[2vh] lg:text-[2.6vh] font-semibold">

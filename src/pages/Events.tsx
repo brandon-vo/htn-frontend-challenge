@@ -3,7 +3,7 @@ import EventsList from "../components/EventsList";
 const Events: React.FC = () => {
   return (
     <div className="flex w-screen h-screen">
-      <div className="flex flex-col items-start w-full mt-[70px] px-12 md:px-34 lg:px-32 2xl:px-80">
+      <div className="flex flex-col items-start w-full mt-[70px] p-12 md:px-34 lg:px-32 2xl:px-80">
         <h1 className="font-bold text-[4vh] my-1">Upcoming Events</h1>
         <div className="flex flex-col w-full">
           <div
