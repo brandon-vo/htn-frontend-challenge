@@ -3,23 +3,23 @@ import Events from "./pages/Events";
 import EventDetail from "./pages/EventDetail";
 import Navbar, { loginModalAtom } from "./components/Navbar";
 import Login from "./components/Login";
-import getApi, { apiDataAtom } from "./getApi";
+import getEvents, { eventAtom } from "./getEvents";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const isLoginModalOpen = useAtom(loginModalAtom)[0];
-  const setApiData = useAtom(apiDataAtom)[1];
+  const setEvents = useAtom(eventAtom)[1];
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getApi();
+      const data = await getEvents();
       // console.log(data);
-      setApiData(data);
+      setEvents(data);
     };
     fetchData();
-  }, [setApiData]);
+  }, [setEvents]);
 
   return (
     <BrowserRouter>

@@ -4,9 +4,9 @@ import { TEvent } from "./types";
 
 const URL = "https://api.hackthenorth.com/v3/events";
 
-export const apiDataAtom = atom<TEvent[]>([]);
+export const eventAtom = atom<TEvent[]>([]);
 
-const getApi = () => {
+const getEvents = () => {
   return Axios.get(URL)
     .then((response) => {
       return response.data;
@@ -16,4 +16,4 @@ const getApi = () => {
     });
 };
 
-export default getApi;
+export default getEvents;

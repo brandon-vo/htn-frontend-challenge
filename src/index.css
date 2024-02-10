@@ -44,13 +44,35 @@ button {
   border-color: #e68d27;
 }
 
+.bg-bv-blue {
+  background-color: #4397db;
+}
+
+.bg-bv-purple {
+  background-color: #8a52ca;
+}
+
+.bg-bv-orange {
+  background-color: #e68d27;
+}
+
 .list-font-size {
   font-size: 1rem;
+}
+
+.list-font-size-sm {
+  font-size: 0.8rem;
 }
 
 @media (max-width: 1600px) {
   .list-font-size {
     font-size: 1vw;
+  }
+}
+
+@media (max-width: 1600px) {
+  .list-font-size-sm {
+    font-size: 0.8vw;
   }
 }
 
