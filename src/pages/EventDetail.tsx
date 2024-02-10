@@ -89,7 +89,7 @@ const EventDetail = () => {
               </div>
               {loggedIn && (
                 <a
-                  className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-[1vh] px-[6vh]"
+                  className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-[1vh] px-[4vh]"
                   target="_blank"
                   rel="noreferrer"
                   href={event?.private_url}

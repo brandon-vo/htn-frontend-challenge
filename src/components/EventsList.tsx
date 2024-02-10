@@ -62,7 +62,7 @@ const EventsList: React.FC = () => {
             <div className="justify-center w-[15%] hidden md:flex">
               <p className="list-font-size text-black">
                 {event.permission === "private" ? (
-                  <span className="text-bv-green">Hackers</span>
+                  <span className="text-bv-medium-green">Hackers</span>
                 ) : (
                   "Everyone"
                 )}

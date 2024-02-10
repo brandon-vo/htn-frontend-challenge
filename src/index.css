@@ -36,8 +36,8 @@ button {
   border-color: rgba(67, 151, 219, 0.6);
 }
 
-.border-bv-purple {
-  border-color: rgba(138, 82, 202, 0.6);
+.border-bv-green {
+  border-color: rgba(63, 181, 85, 0.6);
 }
 
 .border-bv-orange {
@@ -45,15 +45,16 @@ button {
 }
 
 .bg-bv-blue {
-  background-color: #4397db;
+  background-color: rgba(67, 151, 219, 0.6);
 }
 
-.bg-bv-purple {
-  background-color: #8a52ca;
+.bg-bv-green {
+  background-color: rgba(63, 181, 85, 0.6);
+  /* background-color: rgba(138, 82, 202, 0.6); */
 }
 
 .bg-bv-orange {
-  background-color: #e68d27;
+  background-color: rgba(230, 141, 39, 0.6);
 }
 
 .list-font-size {

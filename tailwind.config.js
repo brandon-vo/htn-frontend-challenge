@@ -12,7 +12,7 @@ module.exports = {
         "dark-pink": "#a8859d",
         "bv-white": "#fefefe",
         "bv-grey": "#d1d1d1",
-        "bv-green": "#3c8038",
+        "bv-medium-green": "#3c8038",
         // "bv-blue": "#326fd1",
         // "bv-purple": "#e6d227",
         // "bv-yellow": "#7030ba",

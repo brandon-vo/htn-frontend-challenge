@@ -7,5 +7,5 @@ export const activityToLabel: { [key: string]: string } = {
 export const activityToColour: { [key: string]: string } = {
   workshop: "bv-blue",
   activity: "bv-orange",
-  tech_talk: "bv-purple",
+  tech_talk: "bv-green",
 };
