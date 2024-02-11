@@ -1,7 +1,4 @@
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import EventsList from "../components/EventsList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import EventListHeader from "../components/EventListHeader";
 
 const Events: React.FC = () => {

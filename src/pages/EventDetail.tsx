@@ -129,6 +129,7 @@ const EventDetail = () => {
             ) : (
               <img
                 src={`../images/illustrations/illustration-${randomIllustrationIdx}.png`}
+                alt="Illustration"
                 className="hidden sm:block absolute w-[40%] sm:w-[50%] md:w-[55%] opacity-50 bottom-0 right-0"
               />
             )}
