@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 import { loggedInAtom } from "./Login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
 
 export const loginModalAtom = atom(false);
 
@@ -13,6 +15,10 @@ const Navbar = () => {
       <ul className="flex items-center py-2">
         <li>
           <Link className="font-bold" to="/">
+            <FontAwesomeIcon
+              className="text-light-pink mr-1"
+              icon={faEarthAmerica}
+            />
             <span className="text-light-pink">Hackathon</span> Global
           </Link>
         </li>

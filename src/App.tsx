@@ -1,11 +1,11 @@
+import { useAtom } from "jotai";
+import { useEffect } from "react";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import EventDetail from "./pages/EventDetail";
 import Navbar, { loginModalAtom } from "./components/Navbar";
 import Login from "./components/Login";
-import getEvents, { eventAtom } from "./getEvents";
-import { useAtom } from "jotai";
-import { useEffect } from "react";
+import getEvents, { eventAtom } from "./api/getEvents";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

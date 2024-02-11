@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { format } from "date-fns";
 import { loggedInAtom } from "../components/Login";
-import { TEvent } from "../types";
-import { eventAtom } from "../getEvents";
+import { TEvent } from "../types/EventType";
+import { eventAtom } from "../api/getEvents";
 import { activityToColour, activityToLabel } from "../helpers/eventString";
 
 const getYoutubeVideoId = (url: string) => {
@@ -39,6 +39,10 @@ const EventDetail = () => {
     ? getYoutubeVideoId(event?.public_url)
     : null;
 
+  const numIllustrations = 3;
+  const randomIllustrationIdx =
+    Math.floor(Math.random() * numIllustrations) + 1;
+
   return (
     <div className="flex w-screen h-screen">
       <div className="flex flex-col items-start w-full mt-[70px] p-12 lg:px-34 lg:px-32 2xl:px-80">
@@ -57,60 +61,64 @@ const EventDetail = () => {
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
           <div
-            className={`flex flex-col flex-[75%] bg-bv-white w-full h-full my-2 p-6 rounded-xl border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
+            className={`flex flex-col flex-[75%] relative bg-bv-white w-full h-full my-2 p-6 rounded-xl 
+                      border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
           >
-            <div className="flex items-center">
-              <div className="flex flex-col">
-                <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
-                  {event?.name}
-                </h1>
-                {event?.start_time && (
-                  <p className="text-[1.2vh] lg:text-[1.5vh] text-gray-500">
-                    {format(
-                      new Date(event?.start_time as number),
-                      "MMM dd, yyyy • h:mm a",
-                    )}{" "}
-                    - {format(new Date(event.end_time), "h:mm a")}
-                  </p>
-                )}
-                {event && event.speakers?.length > 0 && (
-                  <div className="flex gap-1 mt-1">
-                    <p className="text-gray-600 text-[2vh]">Presented by</p>
-                    {event?.speakers.map((speaker: any) => (
-                      <p
-                        key={speaker.name}
-                        className="text-gray-600 text-[2vh]"
-                      >
-                        {speaker.name}
-                      </p>
-                    ))}
-                  </div>
+            <div className="z-[2]">
+              <div className="flex items-center">
+                <div className="flex flex-col">
+                  <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
+                    {event?.name}
+                  </h1>
+                  {event?.start_time && (
+                    <p className="text-[1.2vh] lg:text-[1.5vh] text-gray-500">
+                      {format(
+                        new Date(event?.start_time as number),
+                        "MMM dd, yyyy • h:mm a",
+                      )}{" "}
+                      - {format(new Date(event.end_time), "h:mm a")}
+                    </p>
+                  )}
+                  {event && event.speakers?.length > 0 && (
+                    <div className="flex gap-1 mt-1">
+                      <p className="text-gray-600 text-[2vh]">Presented by</p>
+                      {event?.speakers.map((speaker: any) => (
+                        <p
+                          key={speaker.name}
+                          className="text-gray-600 text-[2vh]"
+                        >
+                          {speaker.name}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {loggedIn && (
+                  <a
+                    className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink 
+                            hover:bg-dark-pink transition py-[1vh] px-[4vh]"
+                    target="_blank"
+                    rel="noreferrer"
+                    href={event?.private_url}
+                  >
+                    Link
+                  </a>
                 )}
               </div>
-              {loggedIn && (
-                <a
-                  className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink hover:bg-dark-pink transition py-[1vh] px-[4vh]"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={event?.private_url}
-                >
-                  Link
-                </a>
+              <p className="text-black text-[1.7vh] mt-1 mb-2">
+                {event?.description}
+              </p>
+              {event?.permission === "private" ? (
+                <p className="text-[1.8vh] text-gray-500 italic">
+                  Event for Hackers
+                </p>
+              ) : (
+                <p className="text-[1.8vh] text-gray-500 italic">
+                  Event for Everyone
+                </p>
               )}
             </div>
-            <p className="text-black text-[1.7vh] mt-1 mb-2">
-              {event?.description}
-            </p>
-            {event?.permission === "private" ? (
-              <p className="text-[1.8vh] text-gray-500 italic">
-                Event for Hackers
-              </p>
-            ) : (
-              <p className="text-[1.8vh] text-gray-500 italic">
-                Event for Everyone
-              </p>
-            )}
-            {youtubeVideoId && (
+            {youtubeVideoId ? (
               <div className="flex-1 w-full h-[30vh] lg:h-[40vh] justify-center mt-2">
                 <iframe
                   title="YouTube Video"
@@ -118,6 +126,11 @@ const EventDetail = () => {
                   src={`https://www.youtube.com/embed/${youtubeVideoId}`}
                 ></iframe>
               </div>
+            ) : (
+              <img
+                src={`../images/illustrations/illustration-${randomIllustrationIdx}.png`}
+                className="hidden sm:block absolute w-[40%] sm:w-[50%] md:w-[55%] opacity-50 bottom-0 right-0"
+              />
             )}
           </div>
           {event && event.related_events?.length > 0 && (
@@ -130,7 +143,7 @@ const EventDetail = () => {
                 </div>
                 <div className="flex flex-col gap-2 mt-2">
                   {event?.related_events.map((relatedEvent: number) => (
-                    <>
+                    <React.Fragment key={relatedEvent}>
                       {(events[relatedEvent - 1].permission !== "private" ||
                         loggedIn) && (
                         <Link
@@ -146,7 +159,7 @@ const EventDetail = () => {
                           </div>
                         </Link>
                       )}
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>

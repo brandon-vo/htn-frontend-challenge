@@ -7,6 +7,8 @@
 type TEventType = "workshop" | "activity" | "tech_talk";
 type TPermission = "public" | "private";
 
+export const EventTypes: TEventType[] = ["workshop", "activity", "tech_talk"];
+
 type TSpeaker = {
   name: string;
 };

@@ -2,29 +2,40 @@ import React, { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
-import { eventAtom } from "../getEvents";
-import { TEvent } from "../types";
+import { eventAtom } from "../api/getEvents";
+import { EventTypes, TEvent } from "../types/EventType";
 import { loggedInAtom } from "./Login";
 import { activityToColour, activityToLabel } from "../helpers/eventString";
+import { eventFilterAtom } from "./EventListHeader";
 
 const EventsList: React.FC = () => {
   const events = useAtom(eventAtom)[0];
   const loggedIn = useAtom(loggedInAtom)[0];
+  const eventFilter = useAtom(eventFilterAtom)[0];
   const [sortedEvents, setSortedEvents] = useState<TEvent[]>(events);
 
   useEffect(() => {
-    let filteredEvents: TEvent[] = [];
+    let allEvents: TEvent[] = [];
 
     if (loggedIn) {
-      filteredEvents = [...events];
+      // All events are shown to logged in users
+      allEvents = [...events];
     } else {
-      filteredEvents = events.filter((event) => event.permission !== "private");
+      // Only public events are shown to non-logged in users
+      allEvents = events.filter((event) => event.permission !== "private");
     }
 
-    const sorted = filteredEvents.sort((a, b) => a.start_time - b.start_time);
+    if (eventFilter !== EventTypes) {
+      // User chose to not show all event types
+      allEvents = allEvents.filter((event) =>
+        eventFilter.includes(event.event_type),
+      );
+    }
+
+    const sorted = allEvents.sort((a, b) => a.start_time - b.start_time);
     setSortedEvents(sorted);
-    console.log(sorted);
-  }, [events, loggedIn]);
+    // console.log(sorted);
+  }, [events, loggedIn, eventFilter]);
 
   return (
     <div className="w-full">

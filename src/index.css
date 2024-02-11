@@ -31,6 +31,20 @@ button {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
+.tooltip::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #e5e7eb;
+  left: 7px;
+  top: -7px;
+}
+
 /* Tailwind is being buggy and not applying my colours sometimes so I have to define them here :| */
 .border-bv-blue {
   border-color: rgba(67, 151, 219, 0.6);

@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import Axios from "axios";
-import { TEvent } from "./types";
+import { TEvent } from "../types/EventType";
 
 const URL = "https://api.hackthenorth.com/v3/events";
 
