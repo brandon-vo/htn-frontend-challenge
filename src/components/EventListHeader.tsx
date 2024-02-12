@@ -8,7 +8,7 @@ import { activityToColour, activityToLabel } from "../helpers/eventString";
 
 export const eventFilterAtom = atomWithStorage("eventFilter", EventTypes);
 
-const EventListHeader = () => {
+const EventListHeader: React.FC = () => {
   const [eventFilter, setEventFilter] = useAtom(eventFilterAtom);
   const [showFilter, setShowFilter] = useState(false);
 

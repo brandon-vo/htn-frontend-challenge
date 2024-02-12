@@ -6,7 +6,7 @@ import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
 
 export const loginModalAtom = atom(false);
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useAtom(loginModalAtom);
   const [loggedIn, setLoggedIn] = useAtom(loggedInAtom);
 

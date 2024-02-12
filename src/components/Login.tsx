@@ -14,8 +14,8 @@ const Login: React.FC = () => {
   const [incorrect, setIncorrect] = useState(false);
 
   const handleLogin = () => {
-    const correctUsername = "username";
-    const correctPassword = "password";
+    const correctUsername = "user";
+    const correctPassword = "pass";
 
     if (username === correctUsername && password === correctPassword) {
       setLoggedIn(true);

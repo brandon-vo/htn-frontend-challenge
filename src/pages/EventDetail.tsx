@@ -14,7 +14,7 @@ const getYoutubeVideoId = (url: string) => {
   return videoIdMatch ? videoIdMatch[1] : null;
 };
 
-const EventDetail = () => {
+const EventDetail: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const loggedIn = useAtom(loggedInAtom)[0];
