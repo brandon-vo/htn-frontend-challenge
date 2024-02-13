@@ -20,7 +20,7 @@ const EventDetail: React.FC = () => {
       alert("You must be logged in to view this event");
       navigate("../events");
     }
-  }, [loggedIn, navigate]);
+  }, [loggedIn, event.permission, navigate]);
 
   const youtubeVideoId = event.public_url?.includes("youtu.be")
     ? getYoutubeVideoId(event.public_url)

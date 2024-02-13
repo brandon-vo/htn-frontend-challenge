@@ -17,7 +17,7 @@ function App() {
       await getEvents().then((response) => setEvents(response));
     };
     fetchData();
-  }, []);
+  }, [setEvents]);
 
   return (
     <BrowserRouter>
