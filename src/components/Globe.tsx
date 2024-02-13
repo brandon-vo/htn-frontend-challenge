@@ -9,12 +9,11 @@ const Globe: React.FC = () => {
     map: new THREE.TextureLoader().load("./images/earth_day.jpg"),
   });
 
-  const meshRef = useRef();
+  const meshRef = useRef<THREE.Mesh>(null!);
   const rotationSpeed = 0.0003;
 
   useFrame(() => {
     if (meshRef.current) {
-      // @ts-ignore
       meshRef.current.rotation.y -= rotationSpeed;
     }
   });
@@ -25,7 +24,6 @@ const Globe: React.FC = () => {
       position={[5, -10, 0]}
       material={material}
       rotation={[0, 0, 0]}
-      // @ts-ignore
       ref={meshRef}
       receiveShadow
     />

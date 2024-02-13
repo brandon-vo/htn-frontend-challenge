@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const setLoggedIn = useAtom(loggedInAtom)[1];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [incorrect, setIncorrect] = useState(false);
+  const [showIncorrect, setShowIncorrect] = useState(false);
 
   const handleLogin = () => {
     const correctUsername = "user";
@@ -21,7 +21,7 @@ const Login: React.FC = () => {
       setLoggedIn(true);
       setLoginModalOpen(false);
     } else {
-      setIncorrect(true);
+      setShowIncorrect(true);
     }
   };
 
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <p className={`text-xs mt-2 ${!incorrect && "invisible"}`}>
+        <p className={`text-xs mt-2 ${!showIncorrect && "invisible"}`}>
           Incorrect username or password!
         </p>
         <button

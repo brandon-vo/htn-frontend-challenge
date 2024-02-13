@@ -14,12 +14,10 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getEvents();
-      // console.log(data);
-      setEvents(data);
+      await getEvents().then((response) => setEvents(response));
     };
     fetchData();
-  }, [setEvents]);
+  }, []);
 
   return (
     <BrowserRouter>

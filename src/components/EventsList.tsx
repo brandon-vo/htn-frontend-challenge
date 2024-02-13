@@ -5,12 +5,13 @@ import { format } from "date-fns";
 import { eventAtom } from "../api/getEvents";
 import { EventTypes, TEvent } from "../types/EventType";
 import { loggedInAtom } from "./Login";
+import { eventFilterAtom, eventReverseDateAtom } from "./EventListHeader";
 import { activityToColour, activityToLabel } from "../helpers/eventString";
-import { eventFilterAtom } from "./EventListHeader";
 
 const EventsList: React.FC = () => {
   const events = useAtom(eventAtom)[0];
   const loggedIn = useAtom(loggedInAtom)[0];
+  const reversedDates = useAtom(eventReverseDateAtom)[0];
   const eventFilter = useAtom(eventFilterAtom)[0];
   const [sortedEvents, setSortedEvents] = useState<TEvent[]>(events);
 
@@ -32,10 +33,13 @@ const EventsList: React.FC = () => {
       );
     }
 
-    const sorted = allEvents.sort((a, b) => a.start_time - b.start_time);
-    setSortedEvents(sorted);
-    // console.log(sorted);
-  }, [events, loggedIn, eventFilter]);
+    const sortedByDates = allEvents.sort((a, b) => a.start_time - b.start_time);
+    if (reversedDates) {
+      sortedByDates.reverse();
+    }
+    setSortedEvents(sortedByDates);
+    // console.log(sortedByDates);
+  }, [events, loggedIn, eventFilter, reversedDates]);
 
   return (
     <div className="w-full">

@@ -2,12 +2,12 @@ import { atom } from "jotai";
 import Axios from "axios";
 import { TEvent } from "../types/EventType";
 
-const URL = "https://api.hackthenorth.com/v3/events";
+const endpointURL = "https://api.hackthenorth.com/v3/events";
 
 export const eventAtom = atom<TEvent[]>([]);
 
 const getEvents = () => {
-  return Axios.get(URL)
+  return Axios.get(endpointURL)
     .then((response) => {
       return response.data;
     })

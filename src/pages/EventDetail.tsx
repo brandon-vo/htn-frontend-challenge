@@ -1,42 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { format } from "date-fns";
 import { loggedInAtom } from "../components/Login";
-import { TEvent } from "../types/EventType";
 import { eventAtom } from "../api/getEvents";
 import { activityToColour, activityToLabel } from "../helpers/eventString";
-
-const getYoutubeVideoId = (url: string) => {
-  const videoIdMatch = url.match(
-    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&]+)/,
-  );
-  return videoIdMatch ? videoIdMatch[1] : null;
-};
+import { getYoutubeVideoId } from "../helpers/youtubeVideo";
 
 const EventDetail: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const loggedIn = useAtom(loggedInAtom)[0];
   const events = useAtom(eventAtom)[0];
-  const [event, setEvent] = useState<TEvent>();
+  const event = events[Number(id) - 1];
 
   useEffect(() => {
-    const eventId = Number(id);
-    const event = events[eventId - 1];
-    setEvent(event);
-    // console.log(event);
-  }, [events, id]);
-
-  useEffect(() => {
-    if (!loggedIn && event?.permission === "private") {
+    // If the user logs out while on a private event page, redirect them to the events page
+    if (!loggedIn && event.permission === "private") {
       alert("You must be logged in to view this event");
       navigate("../events");
     }
-  }, [event, loggedIn, navigate]);
+  }, [loggedIn, navigate]);
 
-  const youtubeVideoId = event?.public_url?.includes("youtu.be")
-    ? getYoutubeVideoId(event?.public_url)
+  const youtubeVideoId = event.public_url?.includes("youtu.be")
+    ? getYoutubeVideoId(event.public_url)
     : null;
 
   const numIllustrations = 3;
@@ -56,33 +43,33 @@ const EventDetail: React.FC = () => {
             {">"}
           </h1>
           <h1 className="font-bold text-[3vh] lg:text-[4vh] text-bv-white ">
-            {activityToLabel[event?.event_type || ""] ?? "Event"}
+            {activityToLabel[event.event_type || ""] ?? "Event"}
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
           <div
             className={`flex flex-col flex-[75%] relative bg-bv-white w-full h-full my-2 p-6 rounded-xl 
-                      border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
+                      border-${activityToColour[event.event_type || ""]} border-l-[1.6vw]`}
           >
             <div className="z-[2]">
               <div className="flex items-center">
                 <div className="flex flex-col">
                   <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
-                    {event?.name}
+                    {event.name}
                   </h1>
-                  {event?.start_time && (
+                  {event.start_time && (
                     <p className="text-[1.2vh] lg:text-[1.5vh] text-gray-500">
                       {format(
-                        new Date(event?.start_time as number),
+                        new Date(event.start_time as number),
                         "MMM dd, yyyy • h:mm a",
                       )}{" "}
                       - {format(new Date(event.end_time), "h:mm a")}
                     </p>
                   )}
-                  {event && event.speakers?.length > 0 && (
+                  {event.speakers.length > 0 && (
                     <div className="flex gap-1 mt-1">
                       <p className="text-gray-600 text-[2vh]">Presented by</p>
-                      {event?.speakers.map((speaker: any) => (
+                      {event.speakers.map((speaker: any) => (
                         <p
                           key={speaker.name}
                           className="text-gray-600 text-[2vh]"
@@ -99,16 +86,16 @@ const EventDetail: React.FC = () => {
                             hover:bg-dark-pink transition py-[1vh] px-[4vh]"
                     target="_blank"
                     rel="noreferrer"
-                    href={event?.private_url}
+                    href={event.private_url}
                   >
                     Link
                   </a>
                 )}
               </div>
               <p className="text-black text-[1.7vh] mt-1 mb-2">
-                {event?.description}
+                {event.description}
               </p>
-              {event?.permission === "private" ? (
+              {event.permission === "private" ? (
                 <p className="text-[1.8vh] text-gray-500 italic">
                   Event for Hackers
                 </p>
@@ -122,7 +109,7 @@ const EventDetail: React.FC = () => {
               <div className="flex-1 w-full h-[30vh] lg:h-[40vh] justify-center mt-2">
                 <iframe
                   title="YouTube Video"
-                  style={{ width: "100%", height: "100%" }}
+                  className="w-full h-full"
                   src={`https://www.youtube.com/embed/${youtubeVideoId}`}
                 ></iframe>
               </div>
@@ -134,7 +121,7 @@ const EventDetail: React.FC = () => {
               />
             )}
           </div>
-          {event && event.related_events?.length > 0 && (
+          {event.related_events.length > 0 && (
             <div className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
               <div className="bg-bv-white lg:h-full rounded-xl p-6">
                 <div className="flex items-center">
@@ -143,7 +130,7 @@ const EventDetail: React.FC = () => {
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2 mt-2">
-                  {event?.related_events.map((relatedEvent: number) => (
+                  {event.related_events.map((relatedEvent: number) => (
                     <React.Fragment key={relatedEvent}>
                       {(events[relatedEvent - 1].permission !== "private" ||
                         loggedIn) && (

@@ -1,8 +1,3 @@
-// This is TypeScript, if you don't know TypeScript, no problem!
-// You can read up about it here or just have a look at the sample
-// data by visiting the endpoint above.
-// Note: You DO NOT have to use typescript in your submission!
-
 // Each event will belong to one of the following types
 type TEventType = "workshop" | "activity" | "tech_talk";
 type TPermission = "public" | "private";
