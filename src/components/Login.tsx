@@ -31,6 +31,9 @@ const Login: React.FC = () => {
     }
   };
 
+  const inputClasses =
+    "border-bv-grey border-2 rounded-md p-[1vh] w-full text-black";
+
   return (
     <Modal onClose={() => setLoginModalOpen(false)}>
       <div className="flex flex-col items-center gap-2">
@@ -44,7 +47,7 @@ const Login: React.FC = () => {
         <p className="text-md w-full">Username</p>
         <input
           type="text"
-          className="border-bv-grey border-2 rounded-md p-[1vh] w-full"
+          className={inputClasses}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -52,7 +55,7 @@ const Login: React.FC = () => {
         <p className="text-md w-full">Password</p>
         <input
           type="password"
-          className="border-bv-grey border-2 rounded-md p-[1vh] w-full"
+          className={inputClasses}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={handleKeyDown}

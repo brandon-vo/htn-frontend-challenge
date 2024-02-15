@@ -9,3 +9,8 @@ export const activityToColour: { [key: string]: string } = {
   activity: "bv-orange",
   tech_talk: "bv-green",
 };
+
+export const permissionToLabel: { [key: string]: string } = {
+  public: "Everyone",
+  private: "Hackers",
+};

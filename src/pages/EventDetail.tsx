@@ -4,7 +4,11 @@ import { useAtom } from "jotai";
 import { format } from "date-fns";
 import { loggedInAtom } from "../components/Login";
 import { eventAtom } from "../api/getEvents";
-import { activityToColour, activityToLabel } from "../helpers/eventString";
+import {
+  activityToColour,
+  activityToLabel,
+  permissionToLabel,
+} from "../helpers/eventString";
 import { getYoutubeVideoId } from "../helpers/youtubeVideo";
 
 const EventDetail: React.FC = () => {
@@ -95,15 +99,9 @@ const EventDetail: React.FC = () => {
               <p className="text-black text-[1.7vh] mt-1 mb-2">
                 {event.description}
               </p>
-              {event.permission === "private" ? (
-                <p className="text-[1.8vh] text-gray-500 italic">
-                  Event for Hackers
-                </p>
-              ) : (
-                <p className="text-[1.8vh] text-gray-500 italic">
-                  Event for Everyone
-                </p>
-              )}
+              <p className="text-[1.8vh] text-gray-500 italic">
+                Event for {permissionToLabel[event.permission ?? ""]}
+              </p>
             </div>
             {youtubeVideoId ? (
               <div className="flex-1 w-full h-[30vh] lg:h-[40vh] justify-center mt-2">

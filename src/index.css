@@ -18,7 +18,8 @@ body {
 h1,
 p,
 a,
-button {
+button,
+input {
   font-family: "Onest", sans-serif;
   color: #fefefe;
 }
@@ -85,9 +86,21 @@ button {
   }
 }
 
+@media (max-width: 1200px) {
+  .list-font-size {
+    font-size: 1.25vw;
+  }
+}
+
 @media (max-width: 1600px) {
   .list-font-size-sm {
     font-size: 0.8vw;
+  }
+}
+
+@media (max-width: 1200px) {
+  .list-font-size-sm {
+    font-size: 1vw;
   }
 }
 

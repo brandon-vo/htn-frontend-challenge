@@ -6,24 +6,27 @@ import {
   faArrowDown19,
   faArrowUp19,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { EventTypes } from "../types/EventType";
-import { activityToColour, activityToLabel } from "../helpers/eventString";
+import { EventTypes } from "../../types/EventType";
+import { activityToColour, activityToLabel } from "../../helpers/eventString";
+import EventListHeaderButton from "./EventListHeaderButton";
 
-export const eventFilterAtom = atomWithStorage("eventFilter", EventTypes);
+export const eventTypeFilterAtom = atomWithStorage(
+  "eventTypeFilter",
+  EventTypes,
+);
 export const eventReverseDateAtom = atomWithStorage("eventDateSort", false);
 
 const EventListHeader: React.FC = () => {
-  const [eventFilter, setEventFilter] = useAtom(eventFilterAtom);
+  const [eventTypeFilter, setEventTypeFilter] = useAtom(eventTypeFilterAtom);
   const [showFilter, setShowFilter] = useState(false);
   const [reversedDates, setReversedDates] = useAtom(eventReverseDateAtom);
   const filterRef = useRef<HTMLDivElement>(null);
 
   const toggleEventType = (type: any) => {
-    if (eventFilter.includes(type)) {
-      setEventFilter(eventFilter.filter((item) => item !== type));
+    if (eventTypeFilter.includes(type)) {
+      setEventTypeFilter(eventTypeFilter.filter((item) => item !== type));
     } else {
-      setEventFilter([...eventFilter, type]);
+      setEventTypeFilter([...eventTypeFilter, type]);
     }
   };
 
@@ -56,7 +59,7 @@ const EventListHeader: React.FC = () => {
         <div className="flex flex-col gap-1">
           {EventTypes.map((type) => (
             <button
-              className={`flex items-center gap-2 ${!eventFilter.includes(type) && "opacity-50"}`}
+              className={`flex items-center gap-2 ${!eventTypeFilter.includes(type) && "opacity-50"}`}
               key={type}
               onClick={() => toggleEventType(type)}
             >
@@ -72,20 +75,18 @@ const EventListHeader: React.FC = () => {
   };
 
   return (
-    <div id="category-labels" className="bg-bv-white p-4 py-3 mt-2 rounded-xl">
+    <div
+      id="category-labels"
+      className="bg-bv-white p-4 py-2.5 mt-2 rounded-xl"
+    >
       <div className="flex w-full items-center space-between px-[30px]">
         <div className="relative w-[40%]">
-          <button
-            className="flex items-center gap-1"
-            id={filterButtonID}
+          <EventListHeaderButton
+            buttonID={filterButtonID}
+            label="Filter"
             onClick={() => setShowFilter(!showFilter)}
-          >
-            <p className="text-sm text-gray-600">Event</p>
-            <FontAwesomeIcon
-              icon={faFilter}
-              className="text-[1.2vh] text-gray-600 hover:text-black transition"
-            />
-          </button>
+            icon={faFilter}
+          />
           {showFilter && renderFilterTooltip()}
         </div>
         <p className="hidden md:block w-[15%] ml-[15px] text-end text-sm text-gray-600">
@@ -95,16 +96,11 @@ const EventListHeader: React.FC = () => {
           Invite
         </p>
         <div className="w-[15%] ml-auto md:ml-[25px]">
-          <button
+          <EventListHeaderButton
+            label="Date"
             onClick={() => setReversedDates(!reversedDates)}
-            className="flex items-center gap-1"
-          >
-            <p className="text-sm text-gray-600">Date</p>
-            <FontAwesomeIcon
-              icon={reversedDates ? faArrowUp19 : faArrowDown19}
-              className="text-[1.4vh] text-gray-600 hover:text-black transition"
-            />
-          </button>
+            icon={reversedDates ? faArrowUp19 : faArrowDown19}
+          />
         </div>
       </div>
     </div>
