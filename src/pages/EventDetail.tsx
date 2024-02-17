@@ -20,14 +20,14 @@ const EventDetail: React.FC = () => {
 
   useEffect(() => {
     // If the user logs out while on a private event page, redirect them to the events page
-    if (!loggedIn && event.permission === "private") {
+    if (!loggedIn && event?.permission === "private") {
       alert("You must be logged in to view this event");
       navigate("../events");
     }
-  }, [loggedIn, event.permission, navigate]);
+  }, [loggedIn, event?.permission, navigate]);
 
-  const youtubeVideoId = event.public_url?.includes("youtu.be")
-    ? getYoutubeVideoId(event.public_url)
+  const youtubeVideoId = event?.public_url?.includes("youtu.be")
+    ? getYoutubeVideoId(event?.public_url)
     : null;
 
   const numIllustrations = 3;
@@ -47,33 +47,33 @@ const EventDetail: React.FC = () => {
             {">"}
           </h1>
           <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white ">
-            {activityToLabel[event.event_type || ""] ?? "Event"}
+            {activityToLabel[event?.event_type || ""] ?? "Event"}
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
           <div
             className={`flex flex-col flex-[75%] relative bg-bv-white w-full h-full my-2 p-6 rounded-xl 
-                      border-${activityToColour[event.event_type || ""]} border-l-[1.6vw]`}
+                      border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
           >
             <div className="z-[2]">
               <div className="flex items-center">
                 <div className="flex flex-col">
                   <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
-                    {event.name}
+                    {event?.name}
                   </h1>
-                  {event.start_time && (
+                  {event?.start_time && (
                     <p className="text-[1.2vh] lg:text-[1.5vh] text-gray-500">
                       {format(
-                        new Date(event.start_time as number),
+                        new Date(event?.start_time as number),
                         "MMM dd, yyyy • h:mm a",
                       )}{" "}
-                      - {format(new Date(event.end_time), "h:mm a")}
+                      - {format(new Date(event?.end_time), "h:mm a")}
                     </p>
                   )}
-                  {event.speakers.length > 0 && (
+                  {event?.speakers.length > 0 && (
                     <div className="flex gap-1 mt-1">
                       <p className="text-gray-600 text-[2vh]">Presented by</p>
-                      {event.speakers.map((speaker: any) => (
+                      {event?.speakers.map((speaker: any) => (
                         <p
                           key={speaker.name}
                           className="text-gray-600 text-[2vh]"
@@ -90,36 +90,36 @@ const EventDetail: React.FC = () => {
                             hover:bg-dark-pink transition py-2 px-[4vw] md:px-12"
                     target="_blank"
                     rel="noreferrer"
-                    href={event.private_url}
+                    href={event?.private_url}
                   >
                     Link
                   </a>
                 )}
               </div>
               <p className="text-black text-[1.7vh] mt-1 mb-2">
-                {event.description}
+                {event?.description}
               </p>
               <p className="text-[1.8vh] text-gray-500 italic">
-                Event for {permissionToLabel[event.permission ?? ""]}
+                Event for {permissionToLabel[event?.permission ?? ""]}
               </p>
             </div>
             {youtubeVideoId ? (
-              <div className="flex-1 w-full h-[30vh] lg:h-[40vh] justify-center mt-2">
+              <div className="flex-1 w-full h-full justify-center mt-2 overflow-hidden">
                 <iframe
                   title="YouTube Video"
                   className="w-full h-full"
                   src={`https://www.youtube.com/embed/${youtubeVideoId}`}
-                ></iframe>
+                />
               </div>
             ) : (
               <img
                 src={`../images/illustrations/illustration-${randomIllustrationIdx}.png`}
                 alt="Illustration"
-                className="hidden sm:block absolute w-[40%] sm:w-[50%] md:w-[55%] opacity-50 bottom-0 right-0"
+                className="hidden lg:block absolute lg:w-[60vh] opacity-50 bottom-0 right-0"
               />
             )}
           </div>
-          {event.related_events.length > 0 && (
+          {event?.related_events.length > 0 && (
             <div className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
               <div className="bg-bv-white lg:h-full rounded-xl p-6">
                 <div className="flex items-center">
@@ -128,7 +128,7 @@ const EventDetail: React.FC = () => {
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2 mt-2">
-                  {event.related_events.map((relatedEvent: number) => (
+                  {event?.related_events.map((relatedEvent: number) => (
                     <React.Fragment key={relatedEvent}>
                       {(events[relatedEvent - 1].permission !== "private" ||
                         loggedIn) && (
