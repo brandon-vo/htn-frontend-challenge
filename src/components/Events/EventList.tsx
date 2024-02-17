@@ -72,13 +72,13 @@ const EventList: React.FC = () => {
       {sortedEvents.map((event: any) => (
         <div
           key={event.id}
-          className={`flex justify-center items-center bg-bv-white my-5 px-6 py-3 rounded-xl min-h-[108px] border-${activityToColour[event.event_type]} translucent border-l-[25px]`}
+          className={`flex justify-center items-center bg-bv-white my-5 px-3 md:px-6 py-3 rounded-xl min-h-[108px] border-${activityToColour[event.event_type]} translucent border-l-[25px]`}
         >
           <div className="flex w-full h-full items-center">
             <div className="flex flex-col w-[85%] md:w-[40%] gap-1 md:gap-0">
               <div className="flex flex-col">
                 <h1
-                  className={`${event.name.length > 34 ? "text-[1.2vh]" : "text-[1.6vh]"} md:text-sm lg-text:md xl:text-lg text-black font-bold w-[80%] md:w-[40%] md:whitespace-nowrap`}
+                  className={`${event.name.length > 32 ? "text-[1.1vh]" : "text-[1.6vh]"} md:text-sm lg-text:md xl:text-lg text-black font-bold w-[80%] md:w-[40%] md:whitespace-nowrap`}
                 >
                   {event.name}
                 </h1>
@@ -86,7 +86,7 @@ const EventList: React.FC = () => {
                   {activityToLabel[event?.event_type || ""] ?? "Event"}
                 </p>
               </div>
-              <p className="block md:hidden text-xs text-gray-500">
+              <p className="block md:hidden list-font-size-sm text-gray-500">
                 {format(new Date(event.start_time), "MMM dd, yyyy • h:mm a")} -{" "}
                 {format(new Date(event.end_time), "h:mm a")}
               </p>
@@ -136,7 +136,7 @@ const EventList: React.FC = () => {
               <Link
                 to={`/events/${event.id}`}
                 className="bg-medium-pink hover:bg-dark-pink transition 
-                  py-2 px-4 text-center text-shadow rounded-full w-[100px] block xl:hidden"
+                  py-2 px-[2vw] text-center text-shadow rounded-full w-[100px] block xl:hidden text-sm md:text-md"
               >
                 Details
               </Link>

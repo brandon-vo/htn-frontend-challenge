@@ -12,10 +12,10 @@ const Events: React.FC = () => {
     <div className="flex w-screen h-screen">
       <div className="flex flex-col items-start w-full mt-[70px] p-12 md:px-34 lg:px-32 2xl:px-80">
         <div className="flex justify-between items-center w-full">
-          <h1 className="font-bold text-[2.5vh] md:text-[3vh] lg:text-[4vh] my-1">
+          <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] my-1">
             Upcoming Events
           </h1>
-          <div className="flex items-center bg-white h-[30px] md:h-[40px] max-w-[200px] md:w-[40vw] md:max-w-[300px] py-2 px-4 rounded-xl shadow-xl">
+          <div className="flex items-center bg-white h-[30px] md:h-[40px] w-[25vw] md:w-[40vw] md:max-w-[300px] py-2 px-4 rounded-xl shadow-xl">
             <input
               type="text"
               placeholder="Search"

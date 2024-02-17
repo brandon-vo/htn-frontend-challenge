@@ -14,8 +14,8 @@ const Login: React.FC = () => {
   const [showIncorrect, setShowIncorrect] = useState(false);
 
   const handleLogin = () => {
-    const correctUsername = "user";
-    const correctPassword = "pass";
+    const correctUsername = "htn";
+    const correctPassword = "htn";
 
     if (username === correctUsername && password === correctPassword) {
       setLoggedIn(true);
@@ -35,14 +35,8 @@ const Login: React.FC = () => {
     "border-bv-grey border-2 rounded-md p-[1vh] w-full text-black";
 
   return (
-    <Modal onClose={() => setLoginModalOpen(false)}>
+    <Modal onClose={setLoginModalOpen} className="min-w-[400px]">
       <div className="flex flex-col items-center gap-2">
-        <button
-          className="absolute top-2 right-3 text-red-400 text-lg"
-          onClick={() => setLoginModalOpen(false)}
-        >
-          ✖
-        </button>
         <h1 className="font-bold text-2xl">Login</h1>
         <p className="text-md w-full">Username</p>
         <input

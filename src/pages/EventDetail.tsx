@@ -39,14 +39,14 @@ const EventDetail: React.FC = () => {
       <div className="flex flex-col items-start w-full mt-[70px] p-12 lg:px-34 lg:px-32 2xl:px-80">
         <div className="flex items-center">
           <Link to="../events/" className="z-[20000]">
-            <h1 className="font-bold text-[3vh] lg:text-[4vh] text-gray-500">
+            <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
               Upcoming Events
             </h1>
           </Link>
-          <h1 className="font-bold text-[3vh] lg:text-[4vh] text-bv-white mx-2">
+          <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white mx-2">
             {">"}
           </h1>
-          <h1 className="font-bold text-[3vh] lg:text-[4vh] text-bv-white ">
+          <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white ">
             {activityToLabel[event.event_type || ""] ?? "Event"}
           </h1>
         </div>
@@ -87,7 +87,7 @@ const EventDetail: React.FC = () => {
                 {loggedIn && (
                   <a
                     className="ml-auto mb-auto text-bv-white text-shadow rounded-full bg-medium-pink 
-                            hover:bg-dark-pink transition py-[1vh] px-[4vh]"
+                            hover:bg-dark-pink transition py-2 px-[4vw] md:px-12"
                     target="_blank"
                     rel="noreferrer"
                     href={event.private_url}

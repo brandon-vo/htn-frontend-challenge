@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   const [loggedIn, setLoggedIn] = useAtom(loggedInAtom);
 
   return (
-    <nav className="absolute w-full py-6 px-12 md:px-20 z-[9999]">
+    <nav className="absolute w-full py-6 px-6 md:px-12 md:px-20 z-[9999]">
       <ul className="flex items-center py-2">
         <li>
           <Link className="font-bold" to="/">

@@ -24,6 +24,7 @@ const EventListHeaderButton: React.FC<EventListHeaderButtonProps> = ({
       <FontAwesomeIcon
         icon={icon}
         className="text-[1.2vh] text-gray-600 group-hover:text-black"
+        id={buttonID}
       />
     </button>
   );
