@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { loginModalAtom } from "./Navbar";
+import { loginModalAtom } from "../Navbar";
 import React, { useState } from "react";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
 export const loggedInAtom = atomWithStorage("loggedIn", false);
 

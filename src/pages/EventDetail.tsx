@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { format } from "date-fns";
-import { loggedInAtom } from "../components/Login";
+import { loggedInAtom } from "../components/Modals/Login";
 import { eventAtom } from "../api/getEvents";
 import {
   activityToColour,

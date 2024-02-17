@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import EventDetail from "./pages/EventDetail";
 import Navbar, { loginModalAtom } from "./components/Navbar";
-import Login from "./components/Login";
+import Login from "./components/Modals/Login";
 import getEvents, { eventAtom } from "./api/getEvents";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

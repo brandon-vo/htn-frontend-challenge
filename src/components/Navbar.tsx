@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { atom, useAtom } from "jotai";
-import { loggedInAtom } from "./Login";
+import { loggedInAtom } from "./Modals/Login";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarthAmerica } from "@fortawesome/free-solid-svg-icons";
 

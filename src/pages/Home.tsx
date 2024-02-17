@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { atom, useAtom } from "jotai";
 import { Link } from "react-router-dom";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Background from "../components/Background";
-import Modal from "../components/Modal";
+import Info from "../components/Modals/Info";
+
+export const infoModalAtom = atom(false);
 
 const Home: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-  const handleInfoClick = () => {
-    setShowModal(true);
-  };
+  const [isInfoModalOpen, setInfoModalOpen] = useAtom(infoModalAtom);
+
   return (
     <div className="flex w-screen h-screen">
       <div className="flex flex-col h-full items-left justify-center p-[5vw] md:p-[11vw] lg:p-[14vw]">
@@ -30,28 +30,10 @@ const Home: React.FC = () => {
       <Background />
       <FontAwesomeIcon
         icon={faInfoCircle}
-        onClick={handleInfoClick}
+        onClick={() => setInfoModalOpen(!isInfoModalOpen)}
         className="text-bv-white text-lg absolute bottom-10 right-10 hover:scale-110 hover:text-bv-grey transition shadow-lg"
       />
-      {showModal && (
-        <Modal onClose={setShowModal} className="w-[85%] xl:w-[25%]">
-          <div className="flex flex-col gap-1">
-            <p>
-              This site was built for the take-home challenge for the Hack the
-              North 2024 Frontend application.
-            </p>
-            <p>Created by Brandon Vo</p>
-            <a
-              href="https://github.com/brandon-vo/htn-frontend-challenge"
-              target="_blank"
-              rel="noreferrer"
-              className="text-light-pink hover:text-medium-pink underline"
-            >
-              https://github.com/brandon-vo/htn-frontend-challenge
-            </a>
-          </div>
-        </Modal>
-      )}
+      {isInfoModalOpen && <Info />}
     </div>
   );
 };

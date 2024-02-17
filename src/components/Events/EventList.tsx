@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { eventAtom } from "../../api/getEvents";
 import { EventTypes, TEvent } from "../../types/EventType";
-import { loggedInAtom } from "../Login";
+import { loggedInAtom } from "../Modals/Login";
 import { searchFilterAtom } from "../../pages/Events";
 import { eventTypeFilterAtom, eventReverseDateAtom } from "./EventListHeader";
 import {
