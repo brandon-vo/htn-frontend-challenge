@@ -31,6 +31,7 @@ const Home: React.FC = () => {
       <FontAwesomeIcon
         icon={faInfoCircle}
         onClick={() => setInfoModalOpen(!isInfoModalOpen)}
+        tabIndex={0}
         className="text-bv-white text-lg absolute bottom-10 right-10 hover:scale-110 hover:text-bv-grey transition shadow-lg"
       />
       {isInfoModalOpen && <Info />}

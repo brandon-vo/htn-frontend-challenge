@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [showIncorrect, setShowIncorrect] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     const correctUsername = "htn";
     const correctPassword = "htn";
 
@@ -23,12 +23,7 @@ const Login: React.FC = () => {
     } else {
       setShowIncorrect(true);
     }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleLogin();
-    }
+    e.preventDefault();
   };
 
   const inputClasses =
@@ -36,34 +31,32 @@ const Login: React.FC = () => {
 
   return (
     <Modal onClose={setLoginModalOpen} className="min-w-[400px]">
-      <div className="flex flex-col items-center gap-2">
+      <form className="flex flex-col items-center gap-2" onSubmit={handleLogin}>
         <h1 className="font-bold text-2xl">Login</h1>
-        <p className="text-md w-full">Username</p>
+        <label className="text-md w-full">Username</label>
         <input
           type="text"
           className={inputClasses}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          onKeyDown={handleKeyDown}
         />
-        <p className="text-md w-full">Password</p>
+        <label className="text-md w-full">Password</label>
         <input
           type="password"
           className={inputClasses}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={handleKeyDown}
         />
         <p className={`text-xs mt-2 ${!showIncorrect && "invisible"}`}>
           Incorrect username or password!
         </p>
         <button
           className="text-md w-[100%] bg-medium-pink p-[1vh] rounded-lg shadow-lg text-shadow"
-          onClick={handleLogin}
+          type="submit"
         >
           Login
         </button>
-      </div>
+      </form>
     </Modal>
   );
 };

@@ -19,7 +19,8 @@ h1,
 p,
 a,
 button,
-input {
+input,
+label {
   font-family: "Onest", sans-serif;
   color: #fefefe;
 }
