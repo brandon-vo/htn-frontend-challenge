@@ -17,3 +17,7 @@ The site can be viewed at [hackthenorth.netlify.app](https://hackthenorth.netlif
 | Username | Password |
 | -------- | -------- |
 | htn      | htn      |
+
+## Writeup
+
+[brandonvo.notion.site/HTN-Frontend-2024-Application](https://brandonvo.notion.site/HTN-Frontend-2024-Application-dec9b75877584fae9b4d0544e537ad6f?pvs=4)

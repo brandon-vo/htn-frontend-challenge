@@ -37,7 +37,7 @@ const EventDetail: React.FC = () => {
   return (
     <div className="flex w-screen h-screen">
       <div className="flex flex-col items-start w-full mt-[70px] p-12 lg:px-34 lg:px-32 2xl:px-80">
-        <div className="flex items-center">
+        <header className="flex items-center">
           <Link to="../events/" className="z-[20000]">
             <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
               Upcoming Events
@@ -49,8 +49,8 @@ const EventDetail: React.FC = () => {
           <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white ">
             {activityToLabel[event?.event_type || ""] ?? "Event"}
           </h1>
-        </div>
-        <div className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
+        </header>
+        <main className="flex flex-col lg:flex-row w-full h-full mb-12 lg:gap-4">
           <div
             className={`flex flex-col flex-[75%] relative bg-bv-white w-full h-full my-2 p-6 rounded-xl 
                       border-${activityToColour[event?.event_type || ""]} border-l-[1.6vw]`}
@@ -108,6 +108,7 @@ const EventDetail: React.FC = () => {
                 <iframe
                   title="YouTube Video"
                   className="w-full h-full"
+                  allow="fullscreen"
                   src={`https://www.youtube.com/embed/${youtubeVideoId}`}
                 />
               </div>
@@ -120,7 +121,7 @@ const EventDetail: React.FC = () => {
             )}
           </div>
           {event?.related_events.length > 0 && (
-            <div className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
+            <aside className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
               <div className="bg-bv-white lg:h-full rounded-xl p-6">
                 <div className="flex items-center">
                   <h1 className="text-black text-[2vh] lg:text-[2.6vh] font-semibold">
@@ -149,9 +150,9 @@ const EventDetail: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </aside>
           )}
-        </div>
+        </main>
       </div>
     </div>
   );

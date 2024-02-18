@@ -68,7 +68,7 @@ const EventList: React.FC = () => {
   }, [events, loggedIn, eventTypeFilter, reversedDates, searchFilter]);
 
   return (
-    <div className="w-full">
+    <main className="w-full">
       {sortedEvents.map((event: any) => (
         <div
           key={event.id}
@@ -144,7 +144,7 @@ const EventList: React.FC = () => {
           </div>
         </div>
       ))}
-    </div>
+    </main>
   );
 };
 
