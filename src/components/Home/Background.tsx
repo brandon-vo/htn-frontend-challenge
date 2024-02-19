@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import Globe from "./Globe";
 import { Stars } from "@react-three/drei";
+import Globe from "./Globe";
 
 const Background: React.FC = () => {
   return (
