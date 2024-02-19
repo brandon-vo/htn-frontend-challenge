@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 import { format } from "date-fns";
-import { loggedInAtom } from "../components/Modals/Login";
+import { loggedInAtom } from "../components/Login";
 import { eventAtom } from "../api/getEvents";
 import {
   activityToColour,
@@ -36,15 +36,17 @@ const EventDetail: React.FC = () => {
 
   return (
     <div className="flex w-screen h-screen">
-      <div className="flex flex-col items-start w-full mt-[70px] p-12 lg:px-34 lg:px-32 2xl:px-80">
+      <div className="flex flex-col items-start w-full mt-[75px] py-12 px-8 lg:px-34 lg:px-32 2xl:px-80">
         <header className="flex items-center">
-          <Link to="../events/" className="z-[20000]">
-            <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
-              Upcoming Events
-            </h1>
-          </Link>
+          <button>
+            <Link to="../events/" className="z-[20000]">
+              <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
+                Upcoming Events
+              </h1>
+            </Link>
+          </button>
           <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white mx-2">
-            {">"}
+            {"›"}
           </h1>
           <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white ">
             {activityToLabel[event?.event_type || ""] ?? "Event"}
@@ -122,7 +124,7 @@ const EventDetail: React.FC = () => {
           </div>
           {event?.related_events.length > 0 && (
             <aside className="flex-[30%] w-full h-full pb-10 lg:pb-0 my-2">
-              <div className="bg-bv-white lg:h-full rounded-xl p-6">
+              <div className="bg-bv-white lg:h-full rounded-xl p-6 lg:px-4 xl:px-6">
                 <div className="flex items-center">
                   <h1 className="text-black text-[2vh] lg:text-[2.6vh] font-semibold">
                     Related Events
@@ -140,7 +142,7 @@ const EventDetail: React.FC = () => {
                         >
                           <div className="flex items-center gap-2">
                             <div
-                              className={`w-4 h-4 rounded-sm shadow-md bg-${activityToColour[events[relatedEvent - 1].event_type]}`}
+                              className={`w-4 h-4 min-w-4 min-h-4 rounded-sm shadow-md bg-${activityToColour[events[relatedEvent - 1].event_type]}`}
                             />
                             {events[relatedEvent - 1].name}
                           </div>

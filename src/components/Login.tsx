@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { loginModalAtom } from "../Navbar";
+import { loginModalAtom } from "./Navbar";
 import React, { useState } from "react";
-import Modal from "../Modal";
+import Modal from "./Modal";
 
 export const loggedInAtom = atomWithStorage("loggedIn", false);
 
@@ -51,7 +51,7 @@ const Login: React.FC = () => {
           Incorrect username or password!
         </p>
         <button
-          className="text-md w-[100%] bg-medium-pink p-[1vh] rounded-lg shadow-lg text-shadow"
+          className="text-md w-[100%] bg-medium-pink p-[1vh] rounded-lg shadow-lg text-shadow hover:bg-dark-pink transition"
           type="submit"
         >
           Login

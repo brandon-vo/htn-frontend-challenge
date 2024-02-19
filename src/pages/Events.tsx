@@ -10,7 +10,7 @@ const Events: React.FC = () => {
   const setSearch = useAtom(searchFilterAtom)[1];
   return (
     <div className="flex w-screen h-screen">
-      <div className="flex flex-col items-start w-full mt-[70px] p-12 md:px-34 lg:px-32 2xl:px-80">
+      <div className="flex flex-col items-start w-full mt-[70px] py-12 px-8 md:px-34 lg:px-32 2xl:px-80">
         <div className="flex justify-between items-center w-full">
           <header>
             <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] my-1">

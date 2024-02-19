@@ -83,7 +83,7 @@ label {
 
 @media (max-width: 1600px) {
   .list-font-size {
-    font-size: 1vw;
+    font-size: 1.1vw;
   }
 }
 
@@ -95,7 +95,7 @@ label {
 
 @media (max-width: 1600px) {
   .list-font-size-sm {
-    font-size: 0.8vw;
+    font-size: 1vw;
   }
 }
 
@@ -113,7 +113,7 @@ body::-webkit-scrollbar-track {
   background: #43454d;
 }
 body::-webkit-scrollbar-thumb {
-  background-color: #5e70be;
+  background-color: #6575bd;
   border-radius: 10px;
   border: 3px solid #43454d;
 }
