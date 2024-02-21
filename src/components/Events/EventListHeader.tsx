@@ -84,7 +84,7 @@ const EventListHeader: React.FC = () => {
               onClick={() => toggleEventType(type)}
             >
               <div
-                className={`w-4 h-4 min-w-4 min-h-4 rounded-sm shadow-md bg-${activityToColour[type] || "gray-500"}`}
+                className={`w-4 h-4 min-w-4 min-h-4 rounded-sm shadow-md bg-${activityToColour[type] || "zinc-400"}`}
               />
               <p className="text-black text-sm">
                 {activityToLabel[type] || type}
