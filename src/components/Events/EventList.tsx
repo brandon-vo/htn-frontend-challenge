@@ -5,7 +5,7 @@ import { eventAtom } from "../../api/getEvents";
 import { EventTypes, TEvent } from "../../types/EventType";
 import { loggedInAtom } from "../Login";
 import { searchFilterAtom } from "../../pages/Events";
-import { eventTypeFilterAtom, eventReverseDateAtom } from "./EventListHeader";
+import { eventFilterAtom, eventReverseDateAtom } from "./EventListHeader";
 import {
   activityToColour,
   activityToLabel,
@@ -13,13 +13,15 @@ import {
 } from "../../helpers/eventString";
 import EventRow from "./EventRow";
 import EventColumn from "./EventColumn";
+import BookmarkButton, { bookmarkAtom } from "./BookmarkButton";
 
 const EventList: React.FC = () => {
   const events = useAtom(eventAtom)[0];
   const loggedIn = useAtom(loggedInAtom)[0];
   const reversedDates = useAtom(eventReverseDateAtom)[0];
   const searchFilter = useAtom(searchFilterAtom)[0];
-  const eventTypeFilter = useAtom(eventTypeFilterAtom)[0];
+  const eventFilter = useAtom(eventFilterAtom)[0];
+  const bookmarkedEvents = useAtom(bookmarkAtom)[0];
   const [sortedEvents, setSortedEvents] = useState<TEvent[]>(events);
 
   useEffect(() => {
@@ -33,10 +35,17 @@ const EventList: React.FC = () => {
       allEvents = allEvents.filter((event) => event.permission !== "private");
     }
 
-    // User chose to not show all event types
-    if (eventTypeFilter !== EventTypes) {
+    // Only show bookmarked events
+    if (eventFilter.includes("Bookmarked")) {
       allEvents = allEvents.filter((event) =>
-        eventTypeFilter.includes(event.event_type),
+        bookmarkedEvents.some(
+          (bookmarkedEvent) => bookmarkedEvent.id === event.id,
+        ),
+      );
+    } else if (eventFilter !== EventTypes) {
+      // User chose to not show all events
+      allEvents = allEvents.filter((event) =>
+        eventFilter.includes(event.event_type),
       );
     }
 
@@ -64,9 +73,17 @@ const EventList: React.FC = () => {
           ),
       );
     }
+
     setSortedEvents(allEvents);
     // console.log(sortedByDates);
-  }, [events, loggedIn, eventTypeFilter, reversedDates, searchFilter]);
+  }, [
+    events,
+    loggedIn,
+    eventFilter,
+    reversedDates,
+    searchFilter,
+    bookmarkedEvents,
+  ]);
 
   return (
     <main className="w-full">
@@ -84,6 +101,7 @@ const EventList: React.FC = () => {
                   text-black font-bold w-[80%] md:w-[40%] md:whitespace-nowrap`}
                 >
                   {event.name}
+                  <BookmarkButton event={event} />
                 </h1>
                 <p className="text-black list-font-size-sm hidden md:block">
                   {activityToLabel[event?.event_type || ""] ?? "Event"}

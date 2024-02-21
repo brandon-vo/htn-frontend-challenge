@@ -10,6 +10,7 @@ import {
   permissionToLabel,
 } from "../helpers/eventString";
 import { getYoutubeVideoId } from "../helpers/youtubeVideo";
+import BookmarkButton from "../components/Events/BookmarkButton";
 
 const EventDetail: React.FC = () => {
   const { id } = useParams();
@@ -62,6 +63,7 @@ const EventDetail: React.FC = () => {
                 <div className="flex flex-col">
                   <h1 className="text-black text-[2vh] lg:text-[2.3vh] font-semibold">
                     {event?.name}
+                    <BookmarkButton event={event} />
                   </h1>
                   {event?.start_time && (
                     <p className="text-[1.2vh] lg:text-[1.5vh] text-gray-500">

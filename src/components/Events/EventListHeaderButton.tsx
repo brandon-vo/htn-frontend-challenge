@@ -20,11 +20,12 @@ const EventListHeaderButton: React.FC<EventListHeaderButtonProps> = ({
       id={buttonID}
       onClick={onClick}
     >
-      <p className="text-sm text-gray-600 group-hover:text-black">{label}</p>
+      <p className="text-sm text-gray-600 group-hover:text-black pointer-events-none">
+        {label}
+      </p>
       <FontAwesomeIcon
         icon={icon}
-        className="text-[1.2vh] text-gray-600 group-hover:text-black"
-        id={buttonID}
+        className="text-[1.2vh] text-gray-600 group-hover:text-black pointer-events-none"
       />
     </button>
   );

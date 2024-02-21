@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         </small>
         <Link
           className="w-fit px-4 py-2 lg:px-6 lg:py-3 my-2 bg-medium-pink hover:bg-dark-pink text-bv-white 
-            rounded-xl shadow-lg transition text-shadow"
+            rounded-xl shadow-lg transition text-shadow text-[1.5vh] md:text-md"
           to="/events"
         >
           Events

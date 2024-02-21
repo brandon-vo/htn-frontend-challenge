@@ -1,8 +1,15 @@
 // Each event will belong to one of the following types
-type TEventType = "workshop" | "activity" | "tech_talk";
 type TPermission = "public" | "private";
-
+export type TEventType = "workshop" | "activity" | "tech_talk";
 export const EventTypes: TEventType[] = ["workshop", "activity", "tech_talk"];
+
+export type FilterType = TEventType | "Bookmarked";
+export const FilterTypes: FilterType[] = [
+  "workshop",
+  "activity",
+  "tech_talk",
+  "Bookmarked",
+];
 
 type TSpeaker = {
   name: string;

@@ -14,12 +14,12 @@ const EventColumn: React.FC<EventColumnProps> = ({ event }) => {
         {format(new Date(event.start_time), "MMM dd, yyyy • h:mm a")} -{" "}
         {format(new Date(event.end_time), "h:mm a")}
       </p>
-      <p className="text-[1.2vh] text-gray-400">
+      <p className="text-[1.5vh] text-gray-400">
         {activityToLabel[event.event_type || ""] ?? "Event"}
         {event.speakers.length > 0 &&
           ` by ${event.speakers.map((speaker: any) => speaker.name).join(", ")}`}
       </p>
-      <p className="text-[1.2vh] text-gray-400">
+      <p className="text-[1.5vh] text-gray-400">
         For {permissionToLabel[event.permission || ""]}
       </p>
     </div>
