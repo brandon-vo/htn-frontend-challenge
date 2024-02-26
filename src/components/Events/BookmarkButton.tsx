@@ -45,7 +45,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({ event }) => {
             ? faBookmarkSolid
             : faBookmarkRegular
         }
-        className="ml-1 md:ml-2 text-black"
+        className="mx-1 md:mx-2 text-black"
       />
     </button>
   );

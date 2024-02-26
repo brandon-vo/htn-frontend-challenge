@@ -40,7 +40,6 @@ const Home: React.FC = () => {
       >
         <FontAwesomeIcon
           icon={faInfoCircle}
-          onClick={() => setInfoModalOpen(!isInfoModalOpen)}
           className="text-bv-white text-lg absolute bottom-10 right-10 hover:scale-105
           hover:text-bv-grey transition shadow-lg group-focus:outline outline-offset-2 outline-2"
         />

@@ -112,7 +112,7 @@ const EventList: React.FC = () => {
 
             <EventRow event={event} />
 
-            <button className="flex ml-auto justify-end w-[15%]">
+            <div className="flex ml-auto justify-end w-[15%]">
               <Link
                 to={`/events/${event.id}`}
                 className="bg-medium-pink hover:bg-dark-pink transition 
@@ -127,7 +127,7 @@ const EventList: React.FC = () => {
               >
                 Details
               </Link>
-            </button>
+            </div>
           </div>
         </div>
       ))}

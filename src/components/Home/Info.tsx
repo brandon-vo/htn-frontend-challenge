@@ -11,6 +11,10 @@ const Info: React.FC = () => {
           This site was built for the take-home challenge for the Hack the North
           2024 Frontend application.
         </p>
+        <br />
+        <p>Username: htn</p>
+        <p>Password: htn</p>
+        <br />
         <p>Created by Brandon Vo</p>
         <a
           href="https://github.com/brandon-vo/htn-frontend-challenge"

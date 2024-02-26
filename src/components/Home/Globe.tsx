@@ -24,7 +24,7 @@ const Globe: React.FC = () => {
       if (mouse.current) {
         mouse.current.x = (event.clientX / window.innerWidth) * 2 - 1;
         mouse.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        console.log(mouse.current);
+        // console.log(mouse.current);
       }
     };
 

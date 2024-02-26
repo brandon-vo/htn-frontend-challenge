@@ -39,13 +39,11 @@ const EventDetail: React.FC = () => {
     <div className="flex w-screen h-screen">
       <div className="flex flex-col items-start w-full mt-[75px] py-12 px-8 lg:px-34 lg:px-32 2xl:px-80">
         <header className="flex items-center">
-          <button>
-            <Link to="../events/" className="z-[20000]">
-              <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
-                Upcoming Events
-              </h1>
-            </Link>
-          </button>
+          <Link to="../events/" className="z-[20000]">
+            <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-gray-500">
+              Upcoming Events
+            </h1>
+          </Link>
           <h1 className="font-bold text-[2.3vh] md:text-[3vh] lg:text-[4vh] text-bv-white mx-2">
             {"›"}
           </h1>
